@@ -10,11 +10,9 @@
     "debian": ">= 0.0.0"
   },
   "dependencies": {
-    "appbox": ">= 0.0.0",
     "rbenv": ">= 0.0.0",
     "nginx": ">= 0.0.0",
-    "unicorn": ">= 1.2.2",
-    "runit": ">= 1.1.2"
+    "iptables": ">= 0.0.0"
   },
   "recommendations": {
   },
@@ -34,7 +32,6 @@
     "rackbox": "run all recipes.",
     "rackbox::ruby": "setup a ruby version manager `rbenv`.",
     "rackbox::nginx": "setup `nginx` as front-end server.",
-    "rackbox::unicorn": "setup `unicorn` apps, if any.",
     "rackbox::passenger": "setup `passenger` apps, if any."
   },
   "version": "0.1.2"

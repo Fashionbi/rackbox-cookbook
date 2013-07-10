@@ -9,14 +9,11 @@ version          "0.1.2"
 recipe "rackbox", "run all recipes."
 recipe "rackbox::ruby", "setup a ruby version manager `rbenv`."
 recipe "rackbox::nginx", "setup `nginx` as front-end server."
-recipe "rackbox::unicorn", "setup `unicorn` apps, if any."
 recipe "rackbox::passenger", "setup `passenger` apps, if any."
 
 supports 'ubuntu'
 supports 'debian'
 
-depends 'appbox'
 depends 'rbenv'
 depends 'nginx'
-depends 'unicorn', ">= 1.2.2"
-depends 'runit', '>= 1.1.2'
+depends 'iptables'

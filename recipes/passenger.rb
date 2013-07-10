@@ -4,16 +4,41 @@
 # Setup passenger apps
 #
 
-package "libcurl4-openssl-dev"
+include_recipe "iptables"
 
-::Chef::Recipe.send(:include, Rackbox::Helpers)
+iptables_rule "port_http"
+iptables_rule "port_https"
 
-Array(node["rackbox"]["apps"]["passenger"]).each_with_index do |app, index|
-  default_port = node["rackbox"]["upstream_start_port"]["passenger"].to_i + index
-  app_dir      = ::File.join(node["appbox"]["apps_dir"], app["appname"], 'current')
+include_recipe "rbenv::ohai_plugin"
 
-  setup_nginx_site(app, app_dir, default_port)
-  setup_passenger_runit(app, app_dir, default_port)
-end
+node.override["nginx"]["passenger"]["gem_binary"] = node['languages']['ruby']['gem_bin']
 
+include_recipe "nginx::source"
 
+#package "libcurl4-openssl-dev"
+
+#Array(node["rackbox"]["apps"]).each_with_index do |app, index|
+
+  #app_dir      = ::File.join(node["appbox"]["apps_dir"], app["appname"], 'current')
+
+  #config = node["rackbox"]["default_config"]["nginx"]
+
+  #template( File.join(node["nginx"]["dir"], "sites-available", app["appname"]) ) do
+    #source    config["template_name"]
+    #cookbook  config["template_cookbook"]
+    #mode      "0644"
+    #owner     "root"
+    #group     "root"
+    #variables(
+      #:root_path   => ::File.join(app_dir, 'public'),
+      #:log_dir     => node["nginx"]["log_dir"],
+      #:appname     => app["appname"],
+      #:hostname    => app["hostname"],
+      #:listen_port => config["listen_port"],
+      #:ssl_key     => config["ssl_key"],
+      #:ssl_cert    => config["ssl_cert"]
+    #)
+    #notifies :reload, "service[nginx]"
+  #end
+
+#end
