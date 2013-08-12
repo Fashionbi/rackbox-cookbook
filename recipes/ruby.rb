@@ -21,3 +21,5 @@ node["rackbox"]["ruby"]["versions"].each do |rb_version|
   end
 
 end
+
+include_recipe "rbenv::ohai_plugin"
