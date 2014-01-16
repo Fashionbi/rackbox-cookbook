@@ -34,5 +34,5 @@
     "rackbox::nginx": "setup `nginx` as front-end server.",
     "rackbox::passenger": "setup `passenger` apps, if any."
   },
-  "version": "0.1.2"
+  "version": "0.1.5"
 }
